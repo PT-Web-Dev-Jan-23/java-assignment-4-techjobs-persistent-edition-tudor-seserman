@@ -54,8 +54,8 @@ public class HomeController {
             return "add";
         }
         Optional<Employer> optEmployer = employerRepository.findById(employerId);
-//        Employer employer = optEmployer.get();
-//        newJob.setEmployer(employer);
+        Employer employer = optEmployer.get();
+        newJob.setEmployer(employer);
 
         List<Skill> skillObjs = (List<Skill>) skillRepository.findAllById(skills);
         newJob.setSkills(skillObjs);
@@ -65,7 +65,9 @@ public class HomeController {
 
     @GetMapping("view/{jobId}")
     public String displayViewJob(Model model, @PathVariable int jobId) {
-
+        Optional<Job> optionalJob = jobRepository.findById(jobId);
+        Job job = optionalJob.get();
+        model.addAttribute("job", job);
         return "view";
     }
 
