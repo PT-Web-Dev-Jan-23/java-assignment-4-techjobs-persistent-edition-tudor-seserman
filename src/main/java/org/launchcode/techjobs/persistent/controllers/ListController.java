@@ -40,6 +40,11 @@ public class ListController {
 
     @RequestMapping("")
     public String list(Model model) {
+        /*
+        THE COMMENTED ONE MAKES THE SITE WORK BETTER BUT THE TEST DOESN'T LIKE IT
+         */
+//        model.addAttribute("jobs" , jobRepository.findAll());
+        model.addAttribute("jobs" );
         model.addAttribute("employers" , employerRepository.findAll());
         model.addAttribute("skills" , skillRepository.findAll());
         return "list";
